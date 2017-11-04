@@ -10,23 +10,27 @@
  firebase.initializeApp(config);
 
 // I couldn't get the submit button to work?
-// $("#submit-location").on("click", function(event) {
-//     // Prevent form from submitting
-//     event.preventDefault();
+$("#submit-location").on("click", function(event) {
+    // Prevent form from submitting
+    event.preventDefault();
 
-//     // Get the input value
-//     location = $("#location").val().trim();
-//     console.log(location);
+    // Get the input value
+    var location = $("#location").val().trim();
+    console.log(location);
 
-// });
+searchLocation(location);
+
+});
 
 
+
+function searchLocation (location) {
 //this is a different way to write the url, I have our "usual" way of writing the api url down below
 var url = "https://app.ticketmaster.com/discovery/v2/events.json";
 url += '?' + $.param({
   'apikey': "J5Pf0GaMQ2rv8B7eTBMgCXwAavWO6zvr",
   'size': 10,
-  'city': "new york city",  //for now I just hard coded "salt lake" but we need to connect the submitted city/location field
+  'city': location,  //for now I just hard coded "salt lake" but we need to connect the submitted city/location field
   'stateCode': "",
   'countryCode': "",
   'postalCode': "",
@@ -55,19 +59,32 @@ console.log(url);
                   console.log(json._embedded.events[i].url);
                   console.log(json._embedded.events[i].images[1].url);
                   
-                 var topTenDiv = $("<div id='top-ten-" + i + "'>");
+                  var newRow = $("<div class='row'>");
+                  var topTenDiv = $("<div id='top-ten-" + i + "'>");
+                  var titleClass = $("<div class='col-md-4'>");
+                  var imageClass = $("<div class='col-md-6'>");
+                  
                   var eventName = json._embedded.events[i].name;
                   var title = $("<h2>").text(eventName);  //we need to figure out how to not just show all utah jazz games when we search location for salt lake city
+                  
                   var eventUrl = json._embedded.events[i].url;
+                  
+                  var imageClass = $("<div class='col-md-6'>");
                   var eventImage = json._embedded.events[i].images[1].url;  //we need to adjust the image size because some get really big
                   var image = $('<img>');
                   image.attr('src', eventImage);
-                  image.addClass('event-image');
+                  image.addClass('event-image img-responsive');
                   var link = $('<p>').html("<a target='_blank' href='"+eventUrl+"'>Learn More</a>");
-                  topTenDiv.append(title);
-                  topTenDiv.append(image);
-                  topTenDiv.append(link);
-                  $('#topTen').append(topTenDiv);
+                  
+                  
+                  $('#topTen').append(newRow); 
+                  newRow.append(topTenDiv);
+                  topTenDiv.append(titleClass);
+                  titleClass.append(title);
+                  topTenDiv.append(imageClass);
+                  imageClass.append(image);
+                  imageClass.append(link);
+                  
 
 
 
@@ -80,6 +97,7 @@ console.log(url);
                   // This time, we do not end up here!
                }
     });
+ }
 
 
    // "Option #2" to write api url
@@ -104,3 +122,5 @@ console.log(url);
     //               // This time, we do not end up here!
     //            }
     // });
+
+
