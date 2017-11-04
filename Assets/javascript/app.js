@@ -9,6 +9,8 @@
  };
  firebase.initializeApp(config);
 
+var database = firebase.database();
+
 // I couldn't get the submit button to work?
 $("#submit-location").on("click", function(event) {
     // Prevent form from submitting
@@ -19,6 +21,7 @@ $("#submit-location").on("click", function(event) {
     console.log(location);
 
 searchLocation(location);
+setMap();
 
 });
 
@@ -38,10 +41,6 @@ url += '?' + $.param({
 });
 
 console.log(url);
-
-
-
-
 
 
    $.ajax({
@@ -69,6 +68,9 @@ console.log(url);
                   
                   var eventUrl = json._embedded.events[i].url;
                   
+                  var lat = json._embedded.events[i]._embedded.venues[0].location.latitude;
+                  var lng = json._embedded.events[i]._embedded.venues[0].location.longitude;
+
                   var imageClass = $("<div class='col-md-6'>");
                   var eventImage = json._embedded.events[i].images[1].url;  //we need to adjust the image size because some get really big
                   var image = $('<img>');
@@ -85,9 +87,14 @@ console.log(url);
                   imageClass.append(image);
                   imageClass.append(link);
                   
-
-
-
+                  database.ref().push({
+                      lat: lat,
+                      lng: lng
+                    });
+                    database.ref().on("child_added", function(snapshot){
+                      // console.log(lat);
+                      // console.log(lng);
+                    });
 
                  }
                   // Parse the response.
@@ -98,6 +105,43 @@ console.log(url);
                }
     });
  }
+
+
+
+    function setMap() {
+
+      $.ajax({
+          url: 'https://maps.googleapis.com/maps/api/geocode/json?address=UK&key=AIzaSyC_j9_HzuJX3nK1O9UuflUyAtsX_asRaDM', 
+          type: 'GET',
+          async: true,
+          success: function(res) {
+            console.log("Map----- " + res);
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 10,
+              center: {lat: 39.743694, lng: -105.017315},
+              mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+            
+            database.ref().on("child_added", function(snapshot) {
+
+              newLat = parseFloat(snapshot.val().lat);
+              newLong = parseFloat(snapshot.val().lng);
+              console.log(newLat);
+              console.log(newLong);
+             
+
+            var latLong = {lat: newLat, lng: newLong};
+
+            
+            var marker = new google.maps.Marker({
+              position: latLong,
+              map: map
+            })
+          });
+      }
+    });
+  }
 
 
    // "Option #2" to write api url
