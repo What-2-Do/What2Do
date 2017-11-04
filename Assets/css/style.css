@@ -1,3 +1,43 @@
+body{
+	background-image: url(https://static1.squarespace.com/static/58669c64197aea52832c9a2e/t/58bde98c17bffcceec795fda/1488841150963/milwaukee+searchlight+rental);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-attachment: fixed;
+}
+.navbar{
+	background-color: #330033;
+}
+.jumbotron{
+	color: white;
+	background-color: #330033;
+}
+form{
+	background-color: #808080;
+	border: 5px solid white;
+	padding: 15px;
+}
+.panel{
+	background-color: #808080;
+	font-size: 34px;
+	text-align: center;
+	border: 5px solid white;
+}
+#location{
+	font-size: 24px;
+}
+#topHeader{
+	font-size: 34px;
+	border-bottom: 5px solid white;
+}
 h2 {
     color: purple;
+}
+h1 {
+	color: white;
+	text-align: center;
+	font-size: 44px;
+	background-color: #808080;
+	border: 5px solid white;
+	padding: 15px;
+	margin: 25px;
 }
