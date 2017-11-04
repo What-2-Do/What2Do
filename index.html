@@ -16,6 +16,7 @@
      <!-- Firebase Reference -->
       <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 
+
 </head>
 <body>
 <div class="container">
@@ -88,7 +89,7 @@
     </div>
     <div class="row">
         <div class="jumbotron">
-            <div>
+            <div id="map">
                 
             </div>
         </div>
@@ -97,6 +98,29 @@
 
 <!-- Script -->
 <script type="text/javascript" src ="assets/javascript/app.js"></script>
-
+      
+<!--   <script>
+      function setMap() {
+        var latLong = {lat: 39.8283, lng: -98.5795};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: latLong,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+        
+        window.eqfeed_callback = function(results) {
+        for (var i = 0; i < results.features.length; i++) {
+          var coords = results.features[i].geometry.coordinates;
+          var latLng = new google.maps.LatLng(coords[1],coords[0]);
+          var marker = new google.maps.Marker({
+            position: latLng,
+            map: map
+          });
+        }
+      }
+    }
+</script> -->
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_j9_HzuJX3nK1O9UuflUyAtsX_asRaDM&callback=setMap"></script>
 </body>
 </html>
