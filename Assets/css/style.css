@@ -11,11 +11,11 @@ body{
 	color: white;
 	background-color: #330033;
 }
-form{
+/*form{
 	background-color: #808080;
 	border: 5px solid white;
 	padding: 15px;
-}
+}*/
 .panel{
 	background-color: #808080;
 	font-size: 34px;
@@ -25,6 +25,8 @@ form{
 #cityLocation{
 	font-size: 24px;
 }
+
+
 #topHeader{
 	font-size: 34px;
 	border-bottom: 5px solid white;
@@ -34,12 +36,17 @@ h2 {
 }
 h1 {
 	color: white;
-	text-align: center;
+/*	text-align: center;
 	font-size: 44px;
 	background-color: #808080;
 	border: 5px solid white;
 	padding: 15px;
-	margin: 25px;
+	margin: 25px;*/
+}
+
+
+.learnMore a:link {
+	color: white;;
 }
 
 #map {
@@ -47,3 +54,197 @@ h1 {
     width: 100%;
 }
 
+
+body {
+  padding-bottom: 40px;
+  color: #5a5a5a;
+}
+
+
+.citySearch {
+  position: absolute;
+  top: 150px;
+/*  right: 0;
+  left: 0;*/
+  z-index: 20;
+  /*flex:auto;*/
+}
+
+#location {
+	/*flex:auto;*/
+	width: 99%;
+	height: 45px;
+	border-top-left-radius: 25px;
+	border-bottom-left-radius: 25px;
+	/*display: inline-block;*/
+/*	-webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;*/
+        
+}
+
+#submit-location {
+	/*display: inline-block;*/
+	border-top-right-radius: 25px;
+	border-bottom-right-radius: 25px;
+
+	
+}
+
+.form-group {
+	width: 70%;
+}
+
+.form-inline {
+	width: 70%;
+}
+
+.form-control {
+	width: 70%;
+}
+
+.navbar-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 20;
+}
+
+.navbar-wrapper > .container {
+  padding-right: 0;
+  padding-left: 0;
+}
+.navbar-wrapper .navbar {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.navbar-wrapper .navbar .container {
+  width: auto;
+}
+
+
+.carousel {
+  height: 500px;
+  margin-bottom: 60px;
+}
+
+.carousel-caption {
+  z-index: 10;
+}
+
+.carousel .item {
+  height: 500px;
+  background-color: #777;
+}
+
+.carousel-inner > .item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 500px;
+}
+
+footer {
+	color: white;
+}
+
+// Mobile Responsive
+@media screen and (max-width: 768px) {
+
+	  .navbar-wrapper {
+	    margin-top: 0px;
+	  }
+
+	  .navbar-wrapper .container {
+	    padding-right: 15px;
+	    padding-left: 15px;
+	  }
+
+	  .navbar-wrapper .navbar {
+	    padding-right: 0;
+	    padding-left: 0;
+	  }
+
+	 .navbar-wrapper .navbar {
+	    border-radius: 4px;
+	  }
+
+	 .carousel-caption p {
+	    margin-bottom: 20px;
+	    font-size: 21px;
+	    line-height: 1.4;
+	  }
+
+
+	#location {
+		/*flex:auto;*/
+		width: 90%;
+		height: 45px;
+		border-top-left-radius: 0px;
+		border-bottom-left-radius: 0px;
+		}
+
+	#submit-location {
+		/*display: inline-block;*/
+		border-top-right-radius: 0px;
+		border-bottom-right-radius: 0px;
+	}
+
+	.citySearch {
+	  top: 150px;
+	}
+
+
+	.form-group {
+		width: 100%;
+	}
+
+	.form-inline {
+		width: 100%;
+	}
+
+	.form-control {
+		width: 100%;
+	}
+
+}
+
+@media screen and (max-width: 540px) {
+
+
+	#location {
+		/*flex:auto;*/
+		width: 90%;
+		height: 45px;
+		border-top-left-radius: 0px;
+		border-bottom-left-radius: 0px;
+		}
+
+	#submit-location {
+		/*display: inline-block;*/
+		border-top-right-radius: 0px;
+		border-bottom-right-radius: 0px;
+		width: 90%;
+	}
+
+
+	.citySearch {
+	  top: 100px;
+	}
+
+	.form-group {
+		width: 100%;
+	}
+
+	.form-inline {
+		width: 100%;
+	}
+
+	.form-control {
+		width: 100%;
+	}
+
+
+}

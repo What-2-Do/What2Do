@@ -53,7 +53,7 @@ console.log(url);
 
                  $('#topTen').empty();
 
-                 for (var i = 0; i <= 9; i++) {
+                 for (var i = 0; i < 10; i++) {
                   console.log(json._embedded.events[i].name);
                   console.log(json._embedded.events[i].url);
                   console.log(json._embedded.events[i].images[1].url);
@@ -76,7 +76,7 @@ console.log(url);
                   var image = $('<img>');
                   image.attr('src', eventImage);
                   image.addClass('event-image img-responsive');
-                  var link = $('<p>').html("<a target='_blank' href='"+eventUrl+"'>Learn More</a>");
+                  var link = $('<p class=learnMore>').html("<a target='_blank' href='"+eventUrl+"'>Learn More</a>");
                   
                   
                   $('#topTen').append(newRow); 
