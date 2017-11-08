@@ -2,9 +2,15 @@
 <html>
 <head>
     <title>What 2 Do</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="assets/images/favicon.ico">
 
       <!-- jQuery -->
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.5/umd/popper.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
     
@@ -15,14 +21,13 @@
 
      <!-- Firebase Reference -->
       <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 
 
 </head>
 <body>
 
 
-    <div class="navbar-wrapper">
+<!--     <div class="navbar-wrapper">
       <div class="container">
 
         <nav class="navbar navbar-inverse navbar-static-top">
@@ -34,7 +39,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#">What 2 Do</a>
+              <a class="navbar-brand" href="#"><img class="img-responsive" src="assets/images/what2do_logo.png"  alt="What2Do"></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
@@ -49,14 +54,30 @@
         </nav>
 
       </div>
+    </div> -->
+
+   <div class="navbar-wrapper">
+      <div class="container">
+
+
+          <div class="container">
+            <div class="navbar-header">
+             <h1 id="topText">Find something to do</h1>
+            </div>
+          </div>
+
+      </div>
     </div>
+
+
 
   <div class="container">
     <a name="search"></a>
     <form class="citySearch form-inline">
+
       <div class="form-group">
         <label for="location" id="cityLocation"></label>
-        <input type="text" class="form-control" placeholder="City or Location" id="location">
+        <input type="text" class="form-control" placeholder="Enter any major city" id="location">
       </div>
       
       <button type="submit" class="btn btn-primary btn-lg" id="submit-location">
@@ -71,15 +92,17 @@
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+        <li data-target="#myCarousel" data-slide-to="4"></li>
       </ol>
       <div class="carousel-inner" role="listbox">
         <div class="item active">
-          <img class="first-slide" src="assets/images/zions.jpg" alt="First slide">
+          <img class="first-slide" src="assets/images/slc.jpg" alt="First slide">
           <div class="container">
             <div class="carousel-caption">
-              <h1>Fun Events to Sizzle Your Day</h1>
+              <h1>Fun Events</h1>
               <p>Are you on vacation or just looking for something to do?  Begin a search for events near you!</p>
-              <p><a class="btn btn-lg btn-primary" href="#search" role="button">Get Started</a></p>
+              <!-- <p><a class="btn btn-lg btn-primary" href="#search" role="button">Get Started</a></p> -->
             </div>
           </div>
         </div>
@@ -89,7 +112,7 @@
             <div class="carousel-caption">
               <h1>Nightlife Fun</h1>
               <p>Day or night, search the largest database of events to go have fun.</p>
-              <p><a class="btn btn-lg btn-primary" href="#about" role="button">Learn more</a></p>
+              <!-- <p><a class="btn btn-lg btn-primary" href="#about" role="button">Learn more</a></p> -->
             </div>
           </div>
         </div>
@@ -99,7 +122,27 @@
             <div class="carousel-caption">
               <h1>Travel and Explore</h1>
               <p>Whether you're by home or in a city you don't know, there are plenty of options to explore.</p>
-              <p><a class="btn btn-lg btn-primary" href="#search" role="button">Start Your Expedition</a></p>
+              <!-- <p><a class="btn btn-lg btn-primary" href="#search" role="button">Start Your Expedition</a></p> -->
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img class="fourth-slide" src="assets/images/london.jpg" alt="Fourth slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>London</h1>
+              <p>Travel to live, Live to Travel</p>
+              <!-- <p><a class="btn btn-lg btn-primary" href="#about" role="button">Learn more</a></p> -->
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img class="Fifth-slide" src="assets/images/lasvegas.jpg" alt="Fifth slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Making Memories</h1>
+              <p>Travel to make memories all around the world</p>
+              <!-- <p><a class="btn btn-lg btn-primary" href="#about" role="button">Learn more</a></p> -->
             </div>
           </div>
         </div>
@@ -134,17 +177,17 @@
             </form>
         </div>        
     </div> -->
-    <div class="row">
+    <div class="row" id="resultsSection">
         <div class="jumbotron">
             <div class="panel">
-              <div class="panel-heading" id="topHeader">Top 10 Pictures with Locations</div>
+              <div class="panel-heading" id="topHeader">Top 10 Events</div>
               <div class="panel-body" id="topTen">
                                                            
               </div>
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row" id="mapSection">
         <div class="jumbotron">
             <div id="map">
                 
@@ -154,7 +197,7 @@
 
     <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
-      <p>&copy; 2017 What2Do, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+      <p>&copy; 2017 What2Do, Inc.<!--  &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a> --></p>
     </footer>
 
 </div>
