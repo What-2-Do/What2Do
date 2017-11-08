@@ -1,3 +1,6 @@
+/** {
+	outline: 1px dotted red;
+}*/
 .navbar{
 	background-color: #337ab7;
 }
@@ -9,7 +12,7 @@
 .panel{
 	background-image: url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ8NDQ0NFREWFhURFRUYHSggGBolGxUVITEhJSk3LjouFx8zODM4NygtOjcBCgoKBQUFDgUFDisZExkrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIAKgBLAMBIgACEQEDEQH/xAAYAAEBAQEBAAAAAAAAAAAAAAADAgEABv/EABgQAQEBAQEAAAAAAAAAAAAAAAABAhES/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APFRcicwkBsXmJzFyA2ReYzMJAdIvMdmLkBsisx0hJAZIuRuYuQGSKkbMrkBMy2ZXIqZBHlvlcyryAvLuF8u4AfLLk1yy5APlNyaxNgBsRcnuUWAGxFhtRFgBsRYbUHYAbE2F1EWAKxFhbB2AOxFLYOgPUSSoBcVGReYCpFxkVmAuRUjIvMBWYvMZITMBuYTMZISQHSLzHZhJAZIuZbMrkBkiplUyqZBEy3yTjeAPy7yTy7yAvLLkvllgBsTYaxNyALEWHsHqACxFh7B2AGweofUHYAbB6htQeoArB6hbEagCsRqFqNAKp4up4CovMTCQGwmYnJIDZCyIzCQFZhJE5hMwFZhJEyFzAbITMZmEkB0hMx2YuQHSKmVSKkBMy3i5G8BHHcJx3kBWJuTXKbADcpsNYjUAGojUPYPUAFg9Q+oPUAFg9Q2oPUAOoOmo9QA6iKXQ6AtRFJqIoC0xWokFZXE5XAXmLicrgLyTMRkmQJkmYjJIC8wsiMkzAXmEzE5LmAqReYzMJIDZFyMzFyAyRUjZFSAjjuE4zgD4ywlibAFYjUNYPUAOojUNYPUAGoPUNqD1ABqDsNoWoAdQeobQ9AHQ9Fo9QBaRSUegHpBNIoKyuIySAvJIiLyBMkyiEyBMkg8lyBMlwPJcgvJcjyXIEzF5ickyCovMTCQHSKkdGgzjuKcCeIsJU0B1GiVFAWhahtC2AtQWjaFQDoWjaFoBaFo2hUBaHomh6AdHolHoEUdJUUFZXEZXAJF5RleQLCZHCZAuCZFkuQLkuRZLkC5JkWS5AuSZHkmQJFwcJAVGxkbAa5zgZU1VTQRUVdRQHoeiaFsB6FouhaAWhaLoWgHoWi6FQFoeiaHoB1Gl0egRULqAbkkHlcAmSZHlcAsJkeSZoFyTIslyBclyHNJmgfJMhyXNA2avIs0kAsXKKVcoFlb0cqugvrGdZ0G2stZam0HVGq21GqCaLVXqj1QRqi0vVHoB6FomhaBGh1eh0B6Hpeh6BFHpdHQTR1ekUG5XBwkAmVweSQC5q8izSQDQmQ5pM0DZpc0GaXNA2aTNBmllA8q80OauUDyqlFKqUCyq6KabNATruo670CustT1NoNtRa61FoO1R6rbR6oJtHqq1RaoJ1R1WqPVBOqPVVaO0EUel6HQTR1eqOgnSFaQDovI4vNAsXmji80CQuaGEzQLmklDKTNA2aTNDmklA0pM0GaSUDSklBmrlA8qpoM0qaA0reimm9AvXdF6d6AlqbpNqegq1NqbU2g7WkarrR6oOtHqttHaDKPVVqjtBOqOq1UWgnQ6rVRqgjVRVVGqCKx1YDJVweauASVcFmkgFlXKGUkoFzSZoc1coGlJmglXKB5VyhlXKBpVyglXNAeaVNAlVNAaab6F6d6A3p3oXp3oCXSbpHpl0C7U3SLpNoKtRqsukWg61Gq61FoOtHqt1R2g6j1W6qLQZR6qtUdBlRqq1R0GVNrajoOi45wLi81zgVF5rXAqVcrnAuVcrnAuVcrnAuVUrnAqaVNOcDfTescDeu65wM9MunOBl0m1zgTam6Y4EWptY4E2otc4EWotc4EWotc4EWornAjVS1wP/9k=);
 	background-repeat: no-repeat;
-	background-size: 100%;
+	background-size: cover;
 	background-attachment: fixed;
 	font-size: 34px;
 	text-align: center;
@@ -40,8 +43,12 @@ h1 {
 }
 
 
-.learnMore a:link {
-	color: white;;
+a:link {
+	color: white !important;
+}
+
+a:visited {
+	color: white;
 }
 
 #map {
@@ -173,9 +180,9 @@ footer {
 
 $popper-bg: rgba(255, 193, 7, 1);
 .popper {
-  // position: absolute;
+  position: absolute;
   background: $popper-bg;
-  //width: 150px;
+  width: 150px;
   padding: 10px;
   text-align: center;
   .popper__arrow {

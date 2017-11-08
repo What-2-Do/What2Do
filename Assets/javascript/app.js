@@ -71,10 +71,10 @@ console.log(url);
                   // console.log(json._embedded.events[i].url);
                   // console.log(json._embedded.events[i].images[1].url);
                   
-                  var newRow = $("<div class='row'>");
-                  var topTenDiv = $("<div id='top-ten-" + i + "'>");
-                  var titleClass = $("<div class='col-md-4'>");
-                  var imageClass = $("<div class='col-md-6'>");
+                  var newRow = $("<div class='row' id='top-ten-" + i + "'>");
+                  // var topTenDiv = $("<div id='top-ten-" + i + "'>");
+                  var titleClass = $("<div class='col-md-5'>");
+                  var imageClass = $("<div class='col-md-7'>");
                   
                   var eventName = json._embedded.events[i].name;
                   var title = $("<h2>").text(eventName);  //we need to figure out how to not just show all utah jazz games when we search location for salt lake city
@@ -84,7 +84,7 @@ console.log(url);
                   var lat = json._embedded.events[i]._embedded.venues[0].location.latitude;
                   var lng = json._embedded.events[i]._embedded.venues[0].location.longitude;
 
-                  var imageClass = $("<div class='col-md-6'>");
+                  var imageClass = $("<div class='col-md-7'>");
                   var eventImage = json._embedded.events[i].images[1].url;  //we need to adjust the image size because some get really big
                   var image = $('<img>');
                   image.attr('src', eventImage);
@@ -98,10 +98,10 @@ console.log(url);
 
 
                   $('#topTen').append(newRow); 
-                  newRow.append(topTenDiv);
-                  topTenDiv.append(titleClass);
+                  // newRow.append(topTenDiv);
+                  newRow.append(titleClass);
                   titleClass.append(title);
-                  topTenDiv.append(imageClass);
+                  newRow.append(imageClass);
                   imageClass.append(image);
                   // imageClass.append(link);
                   
@@ -124,8 +124,9 @@ console.log(url);
                       console.log("hi")
                         var reference = document.querySelector('.event-image');
                        var popper = document.querySelector('.img-responsive');
-                        var pop = $('<p class=learnMore>').html("<a target='_blank' href='"+eventUrl+"'>Learn More</a>");
-                        $('.col-md-6').append(pop)
+                        var pop = "<a target='_blank' href='"+eventUrl+"'><p class='learnMore'>Learn More</p></a>"
+                        // $('<p class=learnMore>').html("<a target='_blank' href='"+eventUrl+"'>Learn More</a>");
+                        $('.col-md-7').append(pop)
                         var anotherPopper = new Popper(
                             reference,
                              pop,
