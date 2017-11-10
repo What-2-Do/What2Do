@@ -26,36 +26,6 @@
 </head>
 <body>
 
-
-<!--     <div class="navbar-wrapper">
-      <div class="container">
-
-        <nav class="navbar navbar-inverse navbar-static-top">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="#"><img class="img-responsive" src="Assets/images/what2do_logo.png"  alt="What2Do"></a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-              <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#search">Search</a></li>
-                <li><a href="#favorites">Favorites</a></li>
-                <li><a href="#contact">Contact Us</a></li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-
-      </div>
-    </div> -->
-
    <div class="navbar-wrapper">
       <div class="container">
 
@@ -102,7 +72,6 @@
             <div class="carousel-caption">
               <h1>Fun Events</h1>
               <p>Are you on vacation or just looking for something to do?  Begin a search for events near you!</p>
-              <!-- <p><a class="btn btn-lg btn-primary" href="#search" role="button">Get Started</a></p> -->
             </div>
           </div>
         </div>
@@ -110,9 +79,8 @@
           <img class="second-slide" src="Assets/images/seattle.jpg" alt="Second slide">
           <div class="container">
             <div class="carousel-caption">
-              <h1>Making Memories</h1>
-              <p>Travel to make memories all around the world</p>
-              <!-- <p><a class="btn btn-lg btn-primary" href="#about" role="button">Learn more</a></p> -->
+              <h1>Nightlife Fun</h1>
+              <p>Day or night, search the largest database of events to go have fun.</p>
             </div>
           </div>
         </div>
@@ -122,7 +90,6 @@
             <div class="carousel-caption">
               <h1>Travel and Explore</h1>
               <p>Whether you're by home or in a city you don't know, there are plenty of options to explore.</p>
-              <!-- <p><a class="btn btn-lg btn-primary" href="#search" role="button">Start Your Expedition</a></p> -->
             </div>
           </div>
         </div>
@@ -132,7 +99,6 @@
             <div class="carousel-caption">
               <h1>London</h1>
               <p>Travel to live, Live to Travel</p>
-              <!-- <p><a class="btn btn-lg btn-primary" href="#about" role="button">Learn more</a></p> -->
             </div>
           </div>
         </div>
@@ -140,9 +106,8 @@
           <img class="Fifth-slide" src="Assets/images/lasvegas.jpg" alt="Fifth slide">
           <div class="container">
             <div class="carousel-caption">
-              <h1>Nightlife Fun</h1>
-              <p>Day or night, search the largest database of events to go have fun.</p>
-              <!-- <p><a class="btn btn-lg btn-primary" href="#about" role="button">Learn more</a></p> -->
+              <h1>Making Memories</h1>
+              <p>Travel to make memories all around the world</p>
             </div>
           </div>
         </div>
@@ -162,21 +127,6 @@
 
 <div class="container">
 
-
-
-
-<!--     <div class="row">
-        <div class="jumbotron">
-            <form>
-              <div class="form-group">
-                <a name="search"></a>
-                <label for="location" id="cityLocation">City / Location:</label>
-                <input type="text" class="form-control" id="location">
-              </div>
-              <button type="submit" class="btn btn-default" id="submit-location">Submit</button>
-            </form>
-        </div>        
-    </div> -->
     <div class="row" id="resultsSection">
         <div class="jumbotron">
             <div class="panel">
@@ -197,7 +147,7 @@
 
     <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
-      <p>&copy; 2017 What2Do, Inc.<!--  &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a> --></p>
+      <p>&copy; 2017 What2Do, Inc.</p>
     </footer>
 
 </div>
@@ -205,27 +155,6 @@
 <!-- Script -->
 <script type="text/javascript" src ="Assets/javascript/app.js"></script>
       
-<!--   <script>
-      function setMap() {
-        var latLong = {lat: 39.8283, lng: -98.5795};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
-          center: latLong,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        });
-        
-        window.eqfeed_callback = function(results) {
-        for (var i = 0; i < results.features.length; i++) {
-          var coords = results.features[i].geometry.coordinates;
-          var latLng = new google.maps.LatLng(coords[1],coords[0]);
-          var marker = new google.maps.Marker({
-            position: latLng,
-            map: map
-          });
-        }
-      }
-    }
-</script> -->
 <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_j9_HzuJX3nK1O9UuflUyAtsX_asRaDM&callback=setMap"></script>
 </body>
