@@ -36,7 +36,12 @@ document.getElementById('mapSection').style.display = 'block';
 
 searchLocation(location);
 setMap();
-
+$("#location").val(" ");
+$("#location").val(function() {
+      if (this.value.length == 0) {
+        return $(this).attr('placeholder');
+      }
+    });
 });
 
 
@@ -77,14 +82,22 @@ console.log(url);
                   
                   var eventName = json._embedded.events[i].name;
                   var title = $("<h2>").text(eventName);  //we need to figure out how to not just show all utah jazz games when we search location for salt lake city
-                  
+                  var eventDate = json._embedded.events[i].dates.start.localDate;
+                  var dateEvent = $("<h2>").text(eventDate);
                   var eventUrl = json._embedded.events[i].url;
                   
                   var lat = json._embedded.events[i]._embedded.venues[0].location.latitude;
                   var lng = json._embedded.events[i]._embedded.venues[0].location.longitude;
 
                   var imageClass = $("<div class='col-md-7'>");
-                  var eventImage = json._embedded.events[i].images[1].url;  //we need to adjust the image size because some get really big
+                  var eventImage = ''; 
+                   var imageArray = json._embedded.events[i].images;
+
+                   for (var j = 0; j < imageArray.length; j++) {
+                       if (imageArray[j].width >= 500) {
+                        eventImage = imageArray[j].url;
+                       }
+                    }
                   var image = $('<img>');
                   image.attr('src', eventImage);
                   image.addClass('event-image img-responsive img-rounded');
@@ -100,6 +113,7 @@ console.log(url);
                   // newRow.append(topTenDiv);
                   newRow.append(titleClass);
                   titleClass.append(title);
+                  titleClass.append(dateEvent);
                   newRow.append(imageClass);
                   imageClass.append(image);
                   // imageClass.append(link);
