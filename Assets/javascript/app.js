@@ -41,12 +41,11 @@ setMap();
 
 
 function searchLocation (location) {
-//this is a different way to write the url, I have our "usual" way of writing the api url down below
 var url = "https://app.ticketmaster.com/discovery/v2/events.json";
 url += '?' + $.param({
   'apikey': "J5Pf0GaMQ2rv8B7eTBMgCXwAavWO6zvr",
   'size': 10,
-  'city': location,  //for now I just hard coded "salt lake" but we need to connect the submitted city/location field
+  'city': location,  
   'stateCode': "",
   'countryCode': "",
   'postalCode': "",
