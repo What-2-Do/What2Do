@@ -10,37 +10,30 @@
 
 firebase.initializeApp(config);
 
-// was using onload to hide sections, but decided to use css
-// window.onload = function() {    
-// document.getElementById('resultsSection').style.display = 'none';
-// document.getElementById('mapSection').style.display = 'none';
-// }
-
 var database = firebase.database();
 var map, infoWindow;
 var combineLatLng;
 
 
-// I couldn't get the submit button to work?
 $("#submit-location").on("click", function(event) {
     // Prevent form from submitting
     event.preventDefault();
-
 
     // Get the input value
     var location = $("#location").val().trim();
     console.log(location);
 
-document.getElementById('resultsSection').style.display = 'block';
-document.getElementById('mapSection').style.display = 'block';
+    document.getElementById('resultsSection').style.display = 'block';
+    document.getElementById('mapSection').style.display = 'block';
 
-searchLocation(location);
-setMap();
-$("#location").val(" ");
-$("#location").val(function() {
-      if (this.value.length == 0) {
-        return $(this).attr('placeholder');
-      }
+    searchLocation(location);
+    setMap();
+    
+    $("#location").val(" ");
+    $("#location").val(function() {
+          if (this.value.length == 0) {
+            return $(this).attr('placeholder');
+          }
     });
 });
 
@@ -57,7 +50,7 @@ url += '?' + $.param({
   'keyword': ""
 });
 
-console.log(url);
+  console.log(url);
 
 
    $.ajax({
@@ -71,101 +64,108 @@ console.log(url);
                  $('#topTen').empty();
 
                  for (var i = 0; i < 10; i++) {
-                  // console.log(json._embedded.events[i].name);
-                  // console.log(json._embedded.events[i].url);
-                  // console.log(json._embedded.events[i].images[1].url);
                   
-                  var newRow = $("<div class='row' id='top-ten-" + i + "'>");
-                  // var topTenDiv = $("<div id='top-ten-" + i + "'>");
-                  var titleClass = $("<div class='col-md-5'>");
-                  var imageClass = $("<div class='col-md-7'>");
-                  
-                  var eventName = json._embedded.events[i].name;
-                  var title = $("<h2>").text(eventName);  //we need to figure out how to not just show all utah jazz games when we search location for salt lake city
-                  var eventDate = json._embedded.events[i].dates.start.localDate;
-                  var dateEvent = $("<h2>").text(eventDate);
-                  var eventUrl = json._embedded.events[i].url;
-                  
-                  var lat = json._embedded.events[i]._embedded.venues[0].location.latitude;
-                  var lng = json._embedded.events[i]._embedded.venues[0].location.longitude;
+                    var newRow = $("<div class='row' id='top-ten-" + i + "'>");
+                    var titleClass = $("<div class='col-md-5'>");
+                    var imageClass = $("<div class='col-md-7'>");
+                    
+                    var eventName = json._embedded.events[i].name;
+                    var title = $("<h2>").text(eventName);
+                    var eventDate = json._embedded.events[i].dates.start.localDate;
+                    var dateEvent = $("<h2>").text(eventDate);
+                    var eventUrl = json._embedded.events[i].url;
+                    
+                    var lat = json._embedded.events[i]._embedded.venues[0].location.latitude;
+                    var lng = json._embedded.events[i]._embedded.venues[0].location.longitude;
 
-                  var imageClass = $("<div class='col-md-7'>");
-                  var eventImage = ''; 
-                   var imageArray = json._embedded.events[i].images;
+                    var imageClass = $("<div class='col-md-7'>");
+                    var eventImage = ''; 
+                    var imageArray = json._embedded.events[i].images;
 
-                   for (var j = 0; j < imageArray.length; j++) {
-                       if (imageArray[j].width >= 500) {
-                        eventImage = imageArray[j].url;
-                       }
+                     for (var j = 0; j < imageArray.length; j++) {
+                         if (imageArray[j].width >= 500) {
+                          eventImage = imageArray[j].url;
+                         }
+                      }
+
+                    var image = $('<img>');
+                    image.attr('src', eventImage);
+                    image.addClass('event-image img-responsive img-rounded');
+                    
+
+                    var setLat = '';
+                    var latArray = json._embedded.events[i]._embedded.venues[0];
+                      
+                    if (latArray.location.latitude !== "0") {
+                      setLat = latArray.location.latitude;
                     }
-                  var image = $('<img>');
-                  image.attr('src', eventImage);
-                  image.addClass('event-image img-responsive img-rounded');
-                  // var link = $('<p class=learnMore>').html("<a target='_blank' href='"+eventUrl+"'>Learn More</a>");
-                  
-                  combineLatLng = {
-                    lat: parseFloat(lat),
-                    lng: parseFloat(lng)
-                  }
 
+                    else {
+                      setLat = json._embedded.events[i-2]._embedded.venues[0].location.latitude;
+                    }
+                    
 
-                  $('#topTen').append(newRow); 
-                  // newRow.append(topTenDiv);
-                  newRow.append(titleClass);
-                  titleClass.append(title);
-                  titleClass.append(dateEvent);
-                  newRow.append(imageClass);
-                  imageClass.append(image);
-                  // imageClass.append(link);
-                  
-                  database.ref().push({
-                      lat: lat,
-                      lng: lng
+                    var setLong = '';
+                    var longArray = json._embedded.events[i]._embedded.venues[0];
+                    
+                    if (longArray.location.longitude !== "0") {
+                      setLong = longArray.location.longitude;
+                    }
+
+                    else {
+                      setLong = json._embedded.events[i-2]._embedded.venues[0].location.longitude;
+                    }
+                        
+
+                    combineLatLng = {
+                      lat: parseFloat(setLat),
+                      lng: parseFloat(setLong)
+                    }
+
+                    console.log(combineLatLng);
+
+                    $('#topTen').append(newRow); 
+                    newRow.append(titleClass);
+                    titleClass.append(title);
+                    titleClass.append(dateEvent);
+                    newRow.append(imageClass);
+                    imageClass.append(image);
+                    
+                    database.ref().push({
+                        lat: lat,
+                        lng: lng
                     });
+                    
                     database.ref().on("value", function(snapshot){
-                      // console.log(lat);
-                      // console.log(lng);
-                    });
+                      });
 
-                  database.ref().remove();
-                  
-                  console.log(combineLatLng);
-                                   
-
+                    database.ref().remove();
+                    
+      
                  }
-                    function popper(){
-                      console.log("hi")
-                        var reference = document.querySelector('.event-image');
-                       var popper = document.querySelector('.img-responsive');
-                        var pop = "<a target='_blank' href='"+eventUrl+"'><p class='learnMore'>Learn More</p></a>"
-                        // $('<p class=learnMore>').html("<a target='_blank' href='"+eventUrl+"'>Learn More</a>");
-                        $('.col-md-7').append(pop)
-                        var anotherPopper = new Popper(
-                            reference,
-                             pop,
-                            {
-                               
-                                placment: 'bottom'
-                                      }
-                            );
-                      } 
-                      popper(); 
 
-                  // return combineLatLng; 
-                  // console.log("latlng =" + combineLatLng);
+                  function popper(){
+                    var reference = document.querySelector('.event-image');
+                    var popper = document.querySelector('.img-responsive');
+                    var pop = "<a target='_blank' href='"+eventUrl+"'><p class='learnMore'>Learn More</p></a>"
+                    $('.col-md-7').append(pop)
+                    var anotherPopper = new Popper(
+                        reference,
+                        pop,
+                        {
+                          placment: 'bottom'
+                         }
+                    );
+                  } 
+                  
+                  popper(); 
                },
-      // error: function(xhr, status, err) {
-      //             // This time, we do not end up here!
-      //          }
-
-
     });
-   
-
 
  }
 
- function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow = new google.maps.InfoWindow;
   infoWindow.setPosition(pos);
   infoWindow.setContent(browserHasGeolocation ?
@@ -176,7 +176,7 @@ console.log(url);
 
 
 
-    function setMap() {
+function setMap() {
 
       $.ajax({
           url: 'https://maps.googleapis.com/maps/api/geocode/json?address=UK&key=AIzaSyC_j9_HzuJX3nK1O9UuflUyAtsX_asRaDM', 
@@ -190,58 +190,28 @@ console.log(url);
               center: {lat: 39.8283, lng: -98.5795},
               mapTypeId: google.maps.MapTypeId.ROADMAP
             });
-            
-
-        //   infoWindow = new google.maps.InfoWindow;
-
-        // if (navigator.geolocation) {
-        //   navigator.geolocation.getCurrentPosition(function(position) {
-        //     var pos = {
-        //       lat: position.coords.latitude,
-        //       lng: position.coords.longitude
-        //     };
-
-        //     // infoWindow.setPosition(pos);
-        //     // // infoWindow.setContent('Location found.');
-        //     // infoWindow.open(map);
-        //     map.setCenter(pos);
-        //   }, function() {
-        //     handleLocationError(true, infoWindow, map.getCenter());
-        //   });
-        // } else {
-        //   // Browser doesn't support Geolocation
-        //   handleLocationError(false, infoWindow, map.getCenter());
-        // }
-      
-
-        // handleLocationError();
-
-
 
             database.ref().on("child_added", function(snapshot) {
 
               newLat = parseFloat(snapshot.val().lat);
               newLong = parseFloat(snapshot.val().lng);
-              // console.log(newLat);
-              // console.log(newLong);
-             
-
-            var latLong = {lat: newLat, lng: newLong};
-
-            
-            var marker = new google.maps.Marker({
-              position: latLong,
-              map: map
-            })
-
-            console.log("combined: " + combineLatLng);
-            var newCenter = combineLatLng;
             
 
-            map.setCenter(combineLatLng);
+              var latLong = {lat: newLat, lng: newLong};
 
-          });
-      }
-    });
-  }
+              
+              var marker = new google.maps.Marker({
+                position: latLong,
+                map: map
+              })
+
+              var newCenter = combineLatLng;
+              
+
+              map.setCenter(combineLatLng);
+
+            });
+          }
+      });
+}
 
